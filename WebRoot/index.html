@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>韩老师的教学平台</title>
+<meta charset="UTF-8">
+<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+	name='viewport'>
+	
+<link rel="shortcut icon" href="venus.png"/>
+
+<link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/font-awesome.min.css" rel="stylesheet" />
+<link href="js/fullcalendar/fullcalendar.min.css" rel="stylesheet" />
+<link href="js/bootstrapValidator/bootstrapValidator.min.css" rel="stylesheet" />
+<link href="js/bootstrapTable/bootstrap-table.min.css" rel="stylesheet" />
+<link href="js/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+<link href="css/venus.css" rel="stylesheet" />
+
+</head>
+<body>
+<body class="skin-blue fixed">
+
+	<header class="header"></header>
+
+	<div class="wrapper row-offcanvas row-offcanvas-left">
+
+		<aside class="left-side sidebar-offcanvas"></aside>
+
+		<aside class="right-side"></aside>
+
+	</div>
+	<!-- 提示框 -->
+	<div id="dialog-alert" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">
+						<i class="fa fa-warning"></i> 提示
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p></p>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-venus" data-dismiss="modal" aria-hidden="true">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /提示框 -->
+
+	<!-- 确认框 -->
+	<div id="dialog-confirm" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">
+						<i class="fa fa-question-circle"></i> 确认
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p></p>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-venus btn-confirm">确认</button>
+					<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /确认框 -->
+	
+	<script src="js/seajs/sea.js"></script>
+	<script src="js/jquery/jquery-3.0.0.min.js"></script>
+	<script src="js/bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/bootstrapValidator/bootstrapValidator.min.js"></script>
+	<script src="js/bootstrapTable/bootstrap-table.min.js"></script>
+	<script src="js/bootstrapTable/bootstrap-table-zh-CN.min.js"></script>
+	<script src="js/inputMask/jquery.inputmask.js"></script>
+	<script src="js/inputMask/jquery.inputmask.date.extensions.js"></script>
+	<script src="js/fullcalendar/moment.min.js"></script>
+	<script src="js/fullcalendar/fullcalendar.min.js"></script>
+	<script src="js/fullcalendar/zh-cn.js"></script>
+	<script src="js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="js/slimScroll/jquery.slimscroll.min.js"></script>
+	<script src="js/fastclick/fastclick.min.js"></script>
+	
+	<script>
+		seajs.config({
+			base: '/venus/pages'
+		})
+		
+		seajs.use('index/main', function(main) {
+			main.init();
+		})
+	
+	</script>
+
+</body>
+
+
+
+</html>

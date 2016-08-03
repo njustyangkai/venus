@@ -1,0 +1,42 @@
+<section class="sidebar">
+	<ul class="sidebar-menu">
+		<!-- <li class="active js-sidebar-home">
+			<a href="#">
+				<i class="fa fa-dashboard"></i>
+				<span>首页</span> <small class="badge pull-right bg-green">建设中</small>
+			</a>
+		</li> -->
+		<li class="js-sidebar-mycourse">
+			<a href="javascript: void(0);">
+				<i class="fa fa-calendar"></i>
+				<span>我的课表</span>
+				<small class="badge pull-right bg-green"></small>
+			</a>
+		</li>
+		<li class="js-sidebar-courseManage hidden">
+			<a href="javascript: void(0);">
+				<i class="fa fa-th"></i>
+				<span>在线排课</span>
+				<small class="badge pull-right bg-green"></small>
+			</a>
+		</li>
+		<li class="js-sidebar-student hidden">
+			<a href="javascript: void(0);">
+				<i class="fa fa-lock"></i>
+				<span>学生管理</span>
+				<small class="badge pull-right bg-green"></small>
+			</a>
+		</li>
+		<!-- <li class="js-sidebar-message">
+			<a href="javascript: void(0);">
+				<i class="fa fa-edit"></i>
+				<span>我要留言</span> <small class="badge pull-right bg-green"></small>
+			</a>
+		</li> -->
+	</ul>
+</section>
+<script>
+	seajs.use('left/main', function(main) {
+		main.init();
+	})
+</script>

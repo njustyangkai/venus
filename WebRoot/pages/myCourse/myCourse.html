@@ -1,0 +1,31 @@
+<section class="content-header">
+	<h1>
+		我的课表 <small></small>
+	</h1>
+	<ol class="breadcrumb">
+		<li>
+			<a href="javascript: void(0);" class="js-home">
+				<i class="fa fa-dashboard"></i>
+				Home
+			</a>
+		</li>
+		<li class="active">我的课表</li>
+	</ol>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="box box-venus">
+				<div class="box-body pad">
+					<div id="calendar-myCourse"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	seajs.use('myCourse/main', function(main) {
+		main.init();
+	})
+</script>

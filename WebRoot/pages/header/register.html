@@ -1,0 +1,127 @@
+﻿<section class="content-header">
+	<h1>
+		注册 <small></small>
+	</h1>
+	<ol class="breadcrumb">
+		<li>
+			<a href="javascript: void(0);" class="js-home">
+				<i class="fa fa-dashboard"></i>
+				Home
+			</a>
+		</li>
+		<li class="active">注册</li>
+	</ol>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-md-6">
+			<form class="form-horizontal" id="student-add-form">
+				<div class="form-group">
+					<label for="student-add-username" class="col-sm-3 control-label">用户名</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="student-add-username" name="user.username"
+							placeholder="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="student-add-password" class="col-sm-3 control-label">密码</label>
+					<div class="col-sm-8">
+						<input type="password" class="form-control" id="student-add-password" name="user.password"
+							placeholder="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="student-add-repeatPassword" class="col-sm-3 control-label">确认密码</label>
+					<div class="col-sm-8">
+						<input type="password" class="form-control" id="student-add-repeatPassword"
+							name="passwordRepeat" placeholder="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="student-add-name" class="col-sm-3 control-label">姓名</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" name="student.name" id="student-add-name"
+							placeholder="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">性别</label>
+					<div class="col-sm-8">
+						<div class="radio">
+							<label> <input type="radio" class="minimal" name="student.sex" value="男" /> 男 </label>
+						</div>
+						<div class="radio">
+							<label> <input type="radio" class="minimal" name="student.sex" value="女" /> 女 </label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="student-add-grade" class="col-sm-3 control-label">年级</label>
+					<div class="col-sm-8">
+						<select class="form-control" id="student-add-grade" name="student.grade" placeholder="">
+							<option></option>
+							<option>一年级</option>
+							<option>二年级</option>
+							<option>三年级</option>
+							<option>四年级</option>
+							<option>五年级</option>
+							<option>六年级</option>
+							<option>初一</option>
+							<option>初二</option>
+							<option>初三</option>
+							<option>高一</option>
+							<option>高二</option>
+							<option>高三</option>
+							<option>其他</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="student-add-birthday" class="col-sm-3 control-label">生日</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
+							</div>
+							<input type="text" class="form-control" id="student-add-birthday" name="student.birthday"
+								data-inputmask="'alias': 'yyyy/mm/dd'" data-mask />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="student-add-email" class="col-sm-3 control-label">邮箱</label>
+					<div class="col-sm-8">
+						<input type="email" class="form-control" name="student.email" id="student-add-email"
+							placeholder="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="student-add-phone" class="col-sm-3 control-label">学生电话</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" name="student.phone" id="student-add-phone"
+							placeholder="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="student-add-parentPhone" class="col-sm-3 control-label">家长电话</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" name="student.parentPhone"
+							id="student-add-parentPhone" placeholder="">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-8 ta-right">
+						<button type="submit" class="btn btn-venus" id="student-add-submit-btn">提交</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+<script>
+	seajs.use('header/register', function(Register) {
+		var register = new Register();
+		register.init();
+	});
+</script>
