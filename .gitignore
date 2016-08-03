@@ -1,1 +1,6 @@
 classes/
+.externalToolBuilders/
+.settings/
+.classpath
+.mymetadata
+.project
