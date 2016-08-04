@@ -101,6 +101,11 @@
 			removeActive();
 			$(this).addClass('active');
 		});
+		$('.js-sidebar-courseSearch').click(function() {
+			$('aside.right-side').load('pages/courseSearch/courseSearch.html');
+			removeActive();
+			$(this).addClass('active');
+		});
 		
 	};
 });
