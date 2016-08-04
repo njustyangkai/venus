@@ -39,7 +39,7 @@
 	    		type: 'post',
 	    		success: function(result){
 	    			if(result.success){
-	    				Util.alertDialog('复制成功');
+	    				$('#calendar-courseManage').fullCalendar('refetchEvents');
 	    			}else{
 	    				Util.alertDialog(result.message);
 	    			}
