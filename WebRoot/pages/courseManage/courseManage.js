@@ -22,6 +22,30 @@
 		$('.js-home').click(function() {
 			window.location.reload();
 		});
+		
+		$('#btn-event-copy').click(function() {
+			var view = $('#calendar-courseManage').fullCalendar('getView');
+			var s = new Date(view.start).Format('yyyy-MM-dd hh:mm:ss');
+			var e = new Date(view.end).Format('yyyy-MM-dd hh:mm:ss');
+			var st = new Date();
+			var et = new Date();
+			st.setTime((new Date(view.start)).getTime() - 604800000);
+			et.setTime((new Date(view.end)).getTime() - 604800000);
+			var sl = new Date(st).Format('yyyy-MM-dd hh:mm:ss');
+			var el = new Date(et).Format('yyyy-MM-dd hh:mm:ss');
+			$.ajax({
+	    		url: 'course/copyEvents.do',
+	    		data: {'start': s, 'end': e, 'startLast': sl, 'endLast': el},
+	    		type: 'post',
+	    		success: function(result){
+	    			if(result.success){
+	    				Util.alertDialog('复制成功');
+	    			}else{
+	    				Util.alertDialog(result.message);
+	    			}
+	    		}
+	    	});
+		});
 	};
 
 	//============================================================
@@ -124,6 +148,17 @@
 			selectHelper: false,
 			eventLimit : true, 
 			displayEventTime: false,
+			viewRender: function(view, element) {
+				if(view && view.type == 'month') {
+					$('#btn-event-copy').attr('disabled',true);
+				}
+				if(view && view.type == 'agendaWeek'){
+					$('#btn-event-copy').attr('disabled',false);
+				}
+				if(view && view.type == 'agendaDay'){
+					$('#btn-event-copy').attr('disabled',true);
+				}
+			},
 			events: function(start, end, timezone, callback) {
 				var s = new Date(start).Format('yyyy-MM-dd hh:mm:ss');
 				var e = new Date(end).Format('yyyy-MM-dd hh:mm:ss');

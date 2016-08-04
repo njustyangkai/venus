@@ -1,15 +1,17 @@
 package com.venus.service;
 
-import com.venus.dao.CourseDao;
-import com.venus.pojo.CourseEvent;
-import com.venus.pojo.CourseEvents;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
+import com.venus.dao.CourseDao;
+import com.venus.pojo.CourseEvent;
+import com.venus.pojo.CourseEvents;
 
 @Service
 public class CourseService
@@ -73,8 +75,8 @@ public class CourseService
 	 * @return
 	 * @throws Exception
 	 */
-	public CourseEvents copyEvents(Timestamp start, Timestamp end, Timestamp startLast,
-			Timestamp endLast) throws Exception
+	public boolean copyEvents(Timestamp start, Timestamp end, Timestamp startLast, Timestamp endLast)
+			throws Exception
 	{
 
 		boolean delResult = this.courseDao.deleteEvents(start, end);
@@ -96,8 +98,6 @@ public class CourseService
 				newCourseEvent.setStudentName(e.getStudentName());
 				newCourseEvent.setTeacherId(e.getTeacherId());
 				newCourseEvent.setTeacherName(e.getTeacherName());
-				newCourseEvent.setRemark(e.getRemark());
-				newCourseEvent.setStatus(e.getStatus());
 				newCourseEvent.setColor(e.getColor());
 
 				newList.add(newCourseEvent);
@@ -107,10 +107,10 @@ public class CourseService
 
 			this.courseDao.saveCopyEvents(newCourseEvents);
 
-			return newCourseEvents;
+			return true;
 		}
 
-		return null;
+		return false;
 	}
 
 	/**

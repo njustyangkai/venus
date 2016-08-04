@@ -84,11 +84,13 @@ public class CourseController
 		{
 			String userId = (String) session.getAttribute("userId");
 			String authType = (String) session.getAttribute("authType");
-			
-			if("teacher".equals(authType)) {
+
+			if ("teacher".equals(authType))
+			{
 				result = Result.getSuccess("",
 						JSONObject.fromObject(courseService.getEvents(start, end)));
-			}else{
+			} else
+			{
 				result = Result.getSuccess("",
 						JSONObject.fromObject(courseService.getMyEvents(start, end, userId)));
 			}
@@ -108,19 +110,27 @@ public class CourseController
 	 * @param endLast
 	 * @return
 	 */
-	@RequestMapping("copyEvents")
+	@RequestMapping(value = "copyEvents", method = RequestMethod.POST)
 	@ResponseBody
-	public CourseEvents copyEvents(Timestamp start, Timestamp end, Timestamp startLast,
-			Timestamp endLast)
+	public Object copyEvents(Timestamp start, Timestamp end, Timestamp startLast, Timestamp endLast)
 	{
 
 		try
 		{
-			return this.courseService.copyEvents(start, end, startLast, endLast);
+			if (courseService.copyEvents(start, end, startLast, endLast))
+			{
+
+				result = Result.getSuccess("", null);
+			} else
+			{
+				result = Result.getFailure("", null);
+			}
+
 		} catch (Exception e)
 		{
+			result = Result.getFailure("系统异常", null);
 		}
-		return null;
+		return result;
 	}
 
 	/**

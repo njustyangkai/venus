@@ -1,14 +1,16 @@
 package com.venus.dao;
 
-import com.venus.pojo.CourseEvent;
-import com.venus.pojo.CourseEvents;
-import com.venus.rowMapper.CourseListRowMapper;
 import java.sql.Timestamp;
 import java.util.List;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.venus.pojo.CourseEvent;
+import com.venus.pojo.CourseEvents;
+import com.venus.rowMapper.CourseListRowMapper;
 
 @Repository
 public class CourseDao
@@ -142,7 +144,7 @@ public class CourseDao
 	public boolean deleteEvents(Timestamp start, Timestamp end) throws Exception
 	{
 
-		String delSql = "delete from v_calendar_event where start_time>? and end_time<?";
+		String delSql = "delete from v_event where start_time>? and end_time<?";
 
 		this.jdbcTemplate.update(delSql, new Object[]
 		{ start, end });
@@ -171,7 +173,7 @@ public class CourseDao
 			{
 				CourseEvent e = (CourseEvent) courses.get(i);
 
-				sqls[i] = ("insert into v_calendar_event(event_id,start_time,end_time,student_id,student_name,teacher_id,teacher_name,color,status) values('"
+				sqls[i] = ("insert into v_event(id,start_time,end_time,student_id,student_name,teacher_id,teacher_name,color) values('"
 						+ e.getEventId()
 						+ "','"
 						+ e.getStartTime()
@@ -182,12 +184,7 @@ public class CourseDao
 						+ "','"
 						+ e.getStudentName()
 						+ "','"
-						+ e.getTeacherId()
-						+ "','"
-						+ e.getTeacherName()
-						+ "','"
-						+ e.getColor()
-						+ "'," + e.getStatus() + ")");
+						+ e.getTeacherId() + "','" + e.getTeacherName() + "','" + e.getColor() + "')");
 			}
 
 			this.jdbcTemplate.batchUpdate(sqls);
