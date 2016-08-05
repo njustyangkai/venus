@@ -82,27 +82,27 @@
 		});
 		
 		$('.js-sidebar-mycourse').click(function() {
-			$('aside.right-side').load('pages/myCourse/myCourse.html');
+			$('aside.right-side').load('pages/myCourse/myCourse.html?v=' + version);
 			removeActive();
 			$(this).addClass('active');
 		});
 		$('.js-sidebar-courseManage').click(function() {
-			$('aside.right-side').load('pages/courseManage/courseManage.html');
+			$('aside.right-side').load('pages/courseManage/courseManage.html?v=' + version);
 			removeActive();
 			$(this).addClass('active');
 		});
 		$('.js-sidebar-student').click(function() {
-			$('aside.right-side').load('pages/student/student.html');
+			$('aside.right-side').load('pages/student/student.html?v=' + version);
 			removeActive();
 			$(this).addClass('active');
 		});
 		$('.js-sidebar-message').click(function() {
-			$('aside.right-side').load('pages/message/message.html');
+			$('aside.right-side').load('pages/message/message.html?v=' + version);
 			removeActive();
 			$(this).addClass('active');
 		});
 		$('.js-sidebar-courseSearch').click(function() {
-			$('aside.right-side').load('pages/courseSearch/courseSearch.html');
+			$('aside.right-side').load('pages/courseSearch/courseSearch.html?v=' + version);
 			removeActive();
 			$(this).addClass('active');
 		});

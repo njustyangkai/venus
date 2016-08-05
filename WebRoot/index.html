@@ -90,8 +90,14 @@
 	<script src="js/fastclick/fastclick.min.js"></script>
 	
 	<script>
+		var version = (new Date).getTime();
+		
 		seajs.config({
-			base: '/venus/pages'
+			base: '/venus/pages',
+			map: [
+				['.css', '.css?v=' + version],
+				['.js', '.js?v=' + version]
+			]
 		})
 		
 		seajs.use('index/main', function(main) {
