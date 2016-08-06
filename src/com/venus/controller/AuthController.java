@@ -405,4 +405,27 @@ public class AuthController
 		}
 		return result;
 	}
+
+	/**
+	 * reset password
+	 * 
+	 * @param userId
+	 * @param password
+	 * @return
+	 */
+	@RequestMapping(value = "resetPassword", method = RequestMethod.POST)
+	@ResponseBody
+	public Object resetPassword(String userId, String newPassword)
+	{
+
+		try
+		{
+			authService.modifyPassword(userId, newPassword);
+			result = Result.getSuccess("", null);
+		} catch (Exception e)
+		{
+			result = Result.getFailure("系统异常", null);
+		}
+		return result;
+	}
 }

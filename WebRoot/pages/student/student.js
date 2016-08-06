@@ -26,10 +26,12 @@
 		student.lock();
 
 		student.unlock();
+		
+		student.resetPassword();
 
-		/*$("button").tooltip({
+		$("button").tooltip({
 			placement : 'bottom'
-		});*/
+		});
 
 		$("[data-mask]").inputmask();
 		
@@ -327,14 +329,14 @@
 			var selections = $('#auth-table').bootstrapTable('getSelections');
 
 			if (selections.length == 0) {
-				$('#dialog-alert p').text('未选择');
+				$('#dialog-alert p').text('未选择！');
 				$('#dialog-alert').modal({
 					backdrop : true,
 					keyboard : true,
 					show : true
 				});
 			} else if (selections.length > 1) {
-				$('#dialog-alert p').text('一次只能修改一个');
+				$('#dialog-alert p').text('一次只能修改一个！');
 				$('#dialog-alert').modal({
 					backdrop : true,
 					keyboard : true,
@@ -464,7 +466,7 @@
 
 			if (selections.length == 0) {
 
-				$('#dialog-alert p').text('未选择');
+				$('#dialog-alert p').text('未选择！');
 				$('#dialog-alert').modal({
 					backdrop : true,
 					keyboard : true,
@@ -543,7 +545,7 @@
 
 			if (selections.length == 0) {
 
-				$('#dialog-alert p').text('未选择');
+				$('#dialog-alert p').text('未选择！');
 				$('#dialog-alert').modal({
 					backdrop : true,
 					keyboard : true,
@@ -568,7 +570,7 @@
 
 			if (selections.length == 0) {
 
-				$('#dialog-alert p').text('未选择');
+				$('#dialog-alert p').text('未选择！');
 				$('#dialog-alert').modal({
 					backdrop : true,
 					keyboard : true,
@@ -577,6 +579,40 @@
 
 			} else {
 				changeState('1', selections);
+			}
+		});
+	};
+	
+	//========================================
+	// resetPassword
+	//========================================
+	Student.prototype.resetPassword = function() {
+		$('#student-toolbar .resetPassword').click(function() {
+			var selections = $('#auth-table').bootstrapTable('getSelections');
+			if (selections.length == 0) {
+				Util.alertDialog('未选择！');
+			} else if(selections.length > 1) {
+				Util.alertDialog('一次只能重置一个！');
+			} else {
+				Util.confirmDialog('确认将“' + selections[0].student.name + '”的密码重置为“123456”？', function(){
+					$.ajax({
+						url: 'auth/resetPassword.do',
+						type: 'post',
+						dataType: 'json',
+						data: {
+							'userId': selections[0].user.id,
+							'newPassword': '123456'
+						},
+						success: function(result) {
+							if(result.success) {
+								$('#auth-table').bootstrapTable('refresh');
+								$('#dialog-confirm').modal('hide');
+							}else{
+								Util.alertDialog(result.message);
+							}
+						}
+					});
+				});
 			}
 		});
 	};
