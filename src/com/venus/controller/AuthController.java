@@ -58,11 +58,12 @@ public class AuthController
 			if (StringUtils.isBlank(params.getSearch()))
 			{
 
-				students = this.authService.loadStudents();
+				students = this.authService.loadStudents(params.getSort(), params.getOrder());
 			} else
 			{
 				String nameRequest = new String(params.getSearch().getBytes("iso8859-1"), "utf-8");
-				students = this.authService.queryStudentByName(nameRequest);
+				students = this.authService.queryStudentByName(nameRequest, params.getSort(),
+						params.getOrder());
 			}
 			int totalCount = students.size();
 			List<StudentInfo> studentsPaging = new ArrayList<StudentInfo>();

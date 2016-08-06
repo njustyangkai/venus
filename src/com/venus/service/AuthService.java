@@ -1,13 +1,16 @@
 package com.venus.service;
 
-import com.venus.dao.AuthDao;
-import com.venus.pojo.StudentInfo;
-import com.venus.pojo.User;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
+import com.venus.dao.AuthDao;
+import com.venus.pojo.StudentInfo;
+import com.venus.pojo.User;
 
 @Service
 public class AuthService
@@ -22,10 +25,10 @@ public class AuthService
 	 * @return
 	 * @throws Exception
 	 */
-	public List<StudentInfo> loadStudents() throws Exception
+	public List<StudentInfo> loadStudents(String sort, String order) throws Exception
 	{
 
-		return this.authDao.getStudentsList();
+		return this.authDao.getStudentsList(sort, order);
 	}
 
 	/**
@@ -38,7 +41,9 @@ public class AuthService
 	public boolean addStudent(StudentInfo studentInfo) throws Exception
 	{
 
-		boolean result = (this.authDao.addUser(studentInfo.getUser())) && (this.authDao.addStudent(studentInfo.getStudent())) && (this.authDao.addAuth(studentInfo.getUser()));
+		boolean result = (this.authDao.addUser(studentInfo.getUser()))
+				&& (this.authDao.addStudent(studentInfo.getStudent()))
+				&& (this.authDao.addAuth(studentInfo.getUser()));
 		if (!result)
 		{
 			this.authDao.deleteUser(studentInfo.getUser().getId());
@@ -68,10 +73,11 @@ public class AuthService
 	 * @return
 	 * @throws Exception
 	 */
-	public List<StudentInfo> queryStudentByName(String name) throws Exception
+	public List<StudentInfo> queryStudentByName(String name, String sort, String order)
+			throws Exception
 	{
 
-		return this.authDao.queryStudentByName(name);
+		return this.authDao.queryStudentByName(name, sort, order);
 	}
 
 	/**
@@ -165,7 +171,7 @@ public class AuthService
 		{
 		}
 	}
-	
+
 	/**
 	 * is password right
 	 * 
@@ -174,10 +180,12 @@ public class AuthService
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean isPasswordRight(String userId, String password) throws Exception{
+	public boolean isPasswordRight(String userId, String password) throws Exception
+	{
+
 		return authDao.isPasswordRight(userId, password);
 	}
-	
+
 	/**
 	 * modify password
 	 * 
@@ -185,7 +193,9 @@ public class AuthService
 	 * @param password
 	 * @throws Exception
 	 */
-	public void modifyPassword(String userId, String password) throws Exception{
+	public void modifyPassword(String userId, String password) throws Exception
+	{
+
 		authDao.modifyPassword(userId, password);
 	}
 }

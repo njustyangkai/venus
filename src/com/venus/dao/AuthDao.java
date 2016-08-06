@@ -28,10 +28,11 @@ public class AuthDao
 	 * @return
 	 * @throws Exception
 	 */
-	public List<StudentInfo> getStudentsList() throws Exception
+	public List<StudentInfo> getStudentsList(String sort, String order) throws Exception
 	{
 
-		String sql = "select * from v_user u,v_student s where u.id=s.id order by u.createtime";
+		String sql = "select * from v_user user,v_student student where user.id=student.id order by "
+				+ sort + " " + order;
 		return this.jdbcTemplate.query(sql, new StudentListRowMapper());
 	}
 
@@ -167,10 +168,12 @@ public class AuthDao
 	 * @return
 	 * @throws Exception
 	 */
-	public List<StudentInfo> queryStudentByName(String name) throws Exception
+	public List<StudentInfo> queryStudentByName(String name, String sort, String order)
+			throws Exception
 	{
 
-		String sql = "select * from v_user u,v_student s where u.id=s.id and s.name like ? order by u.createtime";
+		String sql = "select * from v_user user,v_student student where user.id=student.id and student.name like ? order by "
+				+ sort + " " + order;
 		return this.jdbcTemplate.query(sql, new StudentListRowMapper(), "%" + name + "%");
 	}
 
