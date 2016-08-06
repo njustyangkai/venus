@@ -9,9 +9,9 @@
 	//==========================================
 	Index.prototype.init = function () {
 		
-		$('aside.left-side').load('pages/left/left.html');
-		$('header').load('pages/header/header.html');
-		$('aside.right-side').load('pages/myCourse/myCourse.html');
+		$('aside.left-side').load('pages/left/left.html?v=' + version);
+		$('header').load('pages/header/header.html?v=' + version);
+		$('aside.right-side').load('pages/myCourse/myCourse.html?v=' + version);
 
 		this.fixAndChangeColor();
 
