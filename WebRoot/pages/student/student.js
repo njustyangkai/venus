@@ -47,31 +47,20 @@
 		$('#auth-table').bootstrapTable({
 			striped : true,
 			url : 'auth/loadStudents.do',
-			queryParams : function (params) {
-				var temp = {
-					limit : params.limit,
-					offset : params.offset,
-					name : params.search
-				};
-				return temp;
-			},
-			// responseHandler: function(data) {
-			// console.log(data);
-			// globalVas.jsessionid = data.jsessionid;
-			// return data;
-			// },
 			pagination : true,
 			sidePagination : 'server',
 			pageNumber : 1,
 			pageSize : 10,
 			pageList : [10, 25, 50, 100, 'All'],
+			sortable: true,
+			sortName: 'user.username',
+			sortOrder: 'asc',
 			search : true,
 			strictSearch : false,
 			searchText : '',
 			showRefresh : true,
 			showColumns : true,
 			showToggle : true,
-			//cardView: true,
 			paginationDetailHAlign : 'left',
 			paginationHAlign : 'right',
 			clickToSelect : true,
@@ -81,23 +70,28 @@
 					checkbox : true
 				}, {
 					field : 'user.username',
-					title : '用户名'
+					title : '用户名',
+					sortable: true
 				}, {
 					field : 'user.password',
 					title : '密码',
 					visible : false
 				}, {
 					field : 'student.name',
-					title : '姓名'
+					title : '姓名',
+					sortable: true
 				}, {
 					field : 'student.sex',
-					title : '性别'
+					title : '性别',
+					sortable: true
 				}, {
 					field : 'student.grade',
-					title : '年级'
+					title : '年级',
+					sortable: true
 				}, {
 					field : 'student.birthday',
 					title : '生日',
+					sortable: true,
 					formatter : function (value, row, index) {
 						return (new Date(value)).Format('yyyy-MM-dd');
 					}
@@ -113,6 +107,7 @@
 				}, {
 					field : 'user.createTime',
 					title : '创建时间',
+					sortable: true,
 					visible : false,
 					formatter : function (value, row, index) {
 						return (new Date(value)).Format('yyyy-MM-dd hh:mm:ss');
@@ -120,12 +115,14 @@
 				}, {
 					field : 'user.lastLogTime',
 					title : '最后登录时间',
+					sortable: true,
 					formatter : function (value, row, index) {
 						return (new Date(value)).Format('yyyy-MM-dd hh:mm:ss');
 					}
 				}, {
 					field : 'user.state',
 					title : '账号状态',
+					sortable: true,
 					formatter : function (value, row, index) {
 						if (value == 0) {
 							return '<span class="label label-danger">已锁定</span>';

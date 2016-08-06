@@ -1,18 +1,19 @@
 package com.venus.dao;
 
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
 import com.venus.pojo.Student;
 import com.venus.pojo.StudentInfo;
 import com.venus.pojo.User;
 import com.venus.rowMapper.StudentListRowMapper;
 import com.venus.rowMapper.UserRowMapper;
 import com.venus.support.Constants;
-
-import java.util.List;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 
 @Repository
 public class AuthDao
@@ -169,9 +170,8 @@ public class AuthDao
 	public List<StudentInfo> queryStudentByName(String name) throws Exception
 	{
 
-		String sql = "select * from v_user u,v_student s where u.id=s.id and s.name=? order by u.createtime";
-		return this.jdbcTemplate.query(sql, new StudentListRowMapper(), new Object[]
-		{ name });
+		String sql = "select * from v_user u,v_student s where u.id=s.id and s.name like ? order by u.createtime";
+		return this.jdbcTemplate.query(sql, new StudentListRowMapper(), "%" + name + "%");
 	}
 
 	/**

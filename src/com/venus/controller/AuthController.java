@@ -22,6 +22,8 @@ import com.venus.pojo.StudentInfo;
 import com.venus.pojo.User;
 import com.venus.service.AuthService;
 import com.venus.support.Constants;
+import com.venus.support.GridQueryParams;
+import com.venus.support.PagingResult;
 import com.venus.support.Result;
 
 @Controller
@@ -34,6 +36,8 @@ public class AuthController
 
 	private Result result;
 
+	private PagingResult pagingResult;
+
 	/**
 	 * 获取学生信息
 	 * 
@@ -44,36 +48,36 @@ public class AuthController
 	 */
 	@RequestMapping(value = "loadStudents", method = RequestMethod.GET)
 	@ResponseBody
-	public Object loadStudents(int limit, int offset, String name)
+	public Object loadStudents(GridQueryParams params)
 	{
 
 		try
 		{
 			List<StudentInfo> students = new ArrayList<StudentInfo>();
 
-			if (StringUtils.isBlank(name))
+			if (StringUtils.isBlank(params.getSearch()))
 			{
 
 				students = this.authService.loadStudents();
 			} else
 			{
-				String nameRequest = new String(name.getBytes("iso8859-1"), "utf-8");
+				String nameRequest = new String(params.getSearch().getBytes("iso8859-1"), "utf-8");
 				students = this.authService.queryStudentByName(nameRequest);
 			}
-			Map<String, Object> map = new HashMap<String, Object>();
 			int totalCount = students.size();
 			List<StudentInfo> studentsPaging = new ArrayList<StudentInfo>();
-			for (int i = offset; (i < offset + limit) && (i < totalCount); i++)
+			for (int i = params.getOffset(); (i < params.getOffset() + params.getLimit())
+					&& (i < totalCount); i++)
 			{
 				studentsPaging.add(students.get(i));
 			}
-			map.put("total", Integer.valueOf(totalCount));
-			map.put("list", studentsPaging);
-			return map;
+
+			pagingResult = PagingResult.getResult(totalCount, studentsPaging);
 		} catch (Exception e)
 		{
+			pagingResult = PagingResult.getResult(0, null);
 		}
-		return null;
+		return pagingResult;
 	}
 
 	/**
