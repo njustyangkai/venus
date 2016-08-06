@@ -120,7 +120,9 @@
 	//============================================================
 	CourseManage.prototype.getDiffColor = function(i) {
 		
-		var colorClass= ['text-green', 'text-blue', 'text-navy', 'text-yellow', 'text-orange', 'text-aqua', 'text-red', 'text-fuchsia', 'text-purple'];
+		var colorClass= ['text-green', 'text-blue', 'text-navy', 'text-yellow', 'text-orange', 
+		                 'text-aqua', 'text-red', 'text-fuchsia', 'text-purple', 'text-light-blue',
+		                 'text-olive', 'text-lime', 'text-maroon'];
 		
 		return colorClass[i % 9];
 		
