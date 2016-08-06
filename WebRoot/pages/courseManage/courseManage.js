@@ -124,7 +124,7 @@
 		                 'text-aqua', 'text-red', 'text-fuchsia', 'text-purple', 'text-light-blue',
 		                 'text-olive', 'text-lime', 'text-maroon'];
 		
-		return colorClass[i % 9];
+		return colorClass[i % 13];
 		
 	};
 
@@ -209,19 +209,21 @@
 				});
 			},
 			eventClick: function(event, jsEvent, view) {
-				
-				$.ajax({
-					url: 'course/removeEvent.do',
-					type: 'post',
-					data: {'id': event.id},
-					dataType: 'json',
-					success: function(result) {
-						if(result.success) {
-							$('#calendar-courseManage').fullCalendar('removeEvents', event.id);
-						}else{
-							Util.alertDialog(result.message);
+				Util.confirmDialog('确认删除课程吗？', function() {
+					$.ajax({
+						url: 'course/removeEvent.do',
+						type: 'post',
+						data: {'id': event.id},
+						dataType: 'json',
+						success: function(result) {
+							$('#dialog-confirm').modal('hide');
+							if(result.success) {
+								$('#calendar-courseManage').fullCalendar('removeEvents', event.id);
+							}else{
+								Util.alertDialog(result.message);
+							}
 						}
-					}
+					});
 				});
 			}
 		};

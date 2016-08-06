@@ -64,7 +64,20 @@ define(function (require, exports, module) {
 	};
 	
 	//====================================================
-	// alertDialog
+	// confrimDialog
+	//====================================================
+	var confirmDialog = function(text, callback) {
+		$('#dialog-confirm p').text(text);
+		$('#dialog-confirm').modal({
+			backdrop : true,
+			keyboard : true,
+			show : true
+		});
+		$('#dialog-confirm .btn-confirm').unbind().click(callback);
+	};
+	
+	//====================================================
+	// ajaxSetup
 	//====================================================
 	var ajaxSetup = function() {
 		$.ajaxSetup({
@@ -85,6 +98,7 @@ define(function (require, exports, module) {
 		getColor : getColor,
 		getUuid : getUuid,
 		alertDialog: alertDialog,
+		confirmDialog: confirmDialog,
 		ajaxSetup: ajaxSetup
 	};
 
