@@ -283,7 +283,7 @@ public class AuthDao
 	public List<StudentInfo> getStudentsListForCourse() throws Exception
 	{
 
-		String sql = "select * from v_user u,v_student s where u.id=s.id and u.state=1 order by s.name";
+		String sql = "select * from v_user user,v_student student where user.id=student.id and user.state=1 order by convert( student.name using gbk ) collate gbk_chinese_ci asc";
 		return this.jdbcTemplate.query(sql, new StudentListRowMapper());
 	}
 
