@@ -1,13 +1,16 @@
 ﻿<section class="content-header">
-    <h1>
-        课程查询
-        <small></small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="javascript: void(0);" class="js-home"><i class="fa fa-dashboard"></i> Home</a>
-        </li>
-        <li class="active">课程查询</li>
-    </ol>
+	<h1>
+		课程查询 <small></small>
+	</h1>
+	<ol class="breadcrumb">
+		<li>
+			<a href="javascript: void(0);" class="js-home">
+				<i class="fa fa-dashboard"></i>
+				Home
+			</a>
+		</li>
+		<li class="active">课程查询</li>
+	</ol>
 </section>
 <section class="content">
 	<div class="row">
@@ -15,23 +18,36 @@
 			<div class="box box-venus">
 				<div class="box-body table-responsive js-courseSearch-table">
 					<table id="courseSearch-table"></table>
-					<div class="btn-group" id="courseSearch-toolbar" role="group">
-						<button type="button" class="btn btn-default btn-flat add" data-toggle="modal"
-							data-target="#dialog-add" title="新增">
-							<span class="fa fa-plus"></span>
-						</button>
-						<button type="button" class="btn btn-default btn-flat edit" title="编辑">
-							<span class="fa fa-edit"></span>
-						</button>
-						<button type="button" class="btn btn-default btn-flat minus" title="删除">
-							<span class="fa fa-minus"></span>
-						</button>
-						<button type="button" class="btn btn-default btn-flat lock" title="锁定">
-							<span class="fa fa-lock"></span>
-						</button>
-						<button type="button" class="btn btn-default btn-flat unlock" title="激活">
-							<span class="fa fa-unlock"></span>
-						</button>
+					<div id="courseSearch-toolbar">
+						<form class="form-inline">
+							<div class="form-group">
+								<button type="button" id="student-chooser-btn" style="width: 120px;"
+									class="btn btn-danger btn-block dropdown-toggle" data-toggle="dropdown">
+									选择学生
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" style="margin-left:15px;" id="student-chooser"></ul>
+							</div>
+							<div class="form-group" style="vertical-align:inherit;">
+							从
+								<div class="input-group">
+									<input type="text" class="form-control" id="event-startTime" placeholder="开始时间">
+									<div class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</div>
+								</div>
+							</div>
+							<div class="form-group" style="vertical-align:inherit;">
+							到
+								<div class="input-group">
+									<input type="text" class="form-control" id="event-endTime" placeholder="结束时间">
+									<div class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</div>
+								</div>
+							</div>
+							<button class="btn btn-venus" id="btn-event-query">查询</button>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -40,7 +56,7 @@
 </section>
 
 <script>
-    seajs.use('courseSearch/main', function (main) {
-        main.init();
-    });
+	seajs.use('courseSearch/main', function(main) {
+		main.init();
+	});
 </script>
