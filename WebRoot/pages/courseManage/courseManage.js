@@ -53,15 +53,8 @@
 	//============================================================
 	CourseManage.prototype.datepicker = function () {
 		$('#event-startTime, #event-endTime').datetimepicker({
-		    format: 'yyyy-mm-dd hh:ii',
-		    weekStart: 1,
-		    autoclose: true,
-		    //startView: 1,
-		    language: 'zh-CN',
-		    //maxView: 0,
-		    startDate: null,
-		    minuteStep: 15,
-		    endDate: null
+			format: 'Y-m-d H:i',
+			step: 5
 		});
 	};
 

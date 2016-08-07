@@ -1,6 +1,8 @@
 ﻿define(function (require, exports, module) {
 
-	function Index() {}
+	function Index() {
+		$.datetimepicker.setLocale('ch');
+	}
 
 	module.exports = Index;
 
