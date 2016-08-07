@@ -224,6 +224,10 @@
 						}
 					});
 				});
+			},
+			eventMouseover: function( event, jsEvent, view ) { 
+				$('#event-startTime').datetimepicker({value: event.start._i});
+				$('#event-endTime').datetimepicker({value: event.end._i});
 			}
 		};
 
