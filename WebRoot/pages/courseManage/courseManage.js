@@ -54,7 +54,13 @@
 	CourseManage.prototype.datepicker = function () {
 		$('#event-startTime, #event-endTime').datetimepicker({
 			format: 'Y-m-d H:i',
-			step: 5
+			step: 10,
+			dayOfWeekStart: 1
+		});
+		$('#event-startTime').datetimepicker({
+			onChangeDateTime: function(value) {
+				$('#event-endTime').datetimepicker({value: value});
+			}
 		});
 	};
 
