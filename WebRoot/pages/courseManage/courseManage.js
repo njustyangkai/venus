@@ -226,6 +226,17 @@
 				});
 			},
 			eventMouseover: function( event, jsEvent, view ) { 
+				var studentChooser = $("#student-chooser-btn");
+				var studentId = event.studentId;
+				$('#student-chooser > li').each(function(i, v) {
+					var a = $(v).find('a');
+					if (a.attr('data-studentId') === studentId){
+						studentChooser.attr('data-studentId', studentId)
+		            	.attr('data-studentName', a.attr('data-studentName'))
+		            	.css({"background-color": a.css('color'), "border-color": a.css('color')})
+		            	.html(a.text()+' <span class="caret"></span>');
+					}
+				});
 				$('#event-startTime').datetimepicker({value: event.start._i});
 				$('#event-endTime').datetimepicker({value: event.end._i});
 			}
