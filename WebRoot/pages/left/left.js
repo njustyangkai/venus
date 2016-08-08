@@ -76,7 +76,7 @@
 		};
 		
 		$('.js-sidebar-home').click(function() {
-			$('aside.right-side').load('pages/home/home.html');
+			$('aside.right-side').load('pages/home/home.html?v=' + version);
 			removeActive();
 			$(this).addClass('active');
 		});
